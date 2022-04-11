@@ -2,7 +2,7 @@ import { AppBar, Badge, IconButton, Toolbar, Typography } from "@mui/material";
 import React from "react";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-const Navbar = () => {
+const Navbar = ({totalItems}) => {
   return (
     <div>
       <AppBar>
@@ -16,7 +16,7 @@ const Navbar = () => {
             </Typography>
           </IconButton>
           <IconButton aria-label="cart">
-            <Badge badgeContent={4}>
+            <Badge badgeContent={totalItems}>
                 <ShoppingCartIcon />
             </Badge>
           </IconButton>

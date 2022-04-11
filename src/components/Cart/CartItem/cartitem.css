@@ -1,0 +1,8 @@
+.card_section{
+    flex: 1;
+}
+
+.button_group{
+    display: flex;
+    align-items: center;
+}

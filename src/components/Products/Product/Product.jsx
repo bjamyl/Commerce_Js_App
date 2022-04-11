@@ -14,11 +14,11 @@ import {
   Button,
 } from "@mui/material";
 
-const Product = ({ product }) => {
+const Product = ({ product, onAddToCart }) => {
   return (
     <Card>
       <CardMedia
-        image={product.image}
+        image={product.image?.url}
         title={product.name}
         sx={{
           height: 75,
@@ -34,19 +34,21 @@ const Product = ({ product }) => {
         }}
       >
         <Typography variant="h6">{product.name}</Typography>
-        <Typography variant="h7">{product.price}</Typography>
+        <Typography variant="h7">{product.price.formatted_with_symbol}</Typography>
         <CardActions
           sx={{
             padding: 0,
           }}
         >
           <Button
+          
             gutterBottom
             variant="contained"
             disableElevation
             sx={{
               width: "1",
             }}
+            onClick={() => onAddToCart(product.id, 1)}
           >
             add to cart
           </Button>
