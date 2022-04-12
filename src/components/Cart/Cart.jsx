@@ -1,15 +1,22 @@
 import React from "react";
 import Empty from "../../assets/empty.jpg";
 import { Container, Typography, Button, Grid, Paper } from "@mui/material";
-import CartItem from "./CartItem/CartItem"
+import CartItem from "./CartItem/CartItem";
+import { Link } from "react-router-dom";
 
-const Cart = ({ cart }) => {
-
+const Cart = ({
+  cart,
+  handleUpdateCartQty,
+  handleRemoveFromCart,
+  handleEmptyCart,
+}) => {
   const EmptyCart = () => (
     <Container>
       <Typography>Ooops! Your bag is empty. Add some items first!</Typography>
       <img src={Empty} alt="empty" />
-      <Button>Add items</Button>
+      <Button component={Link} to="/">
+        Add items
+      </Button>
     </Container>
   );
 
@@ -18,7 +25,11 @@ const Cart = ({ cart }) => {
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
           <Grid item xs={12} md={6} key={item.id}>
-            <CartItem item={item}/>
+            <CartItem
+              item={item}
+              handleUpdateCartQty={handleUpdateCartQty}
+              handleRemoveFromCart={handleRemoveFromCart}
+            />
           </Grid>
         ))}
       </Grid>
@@ -27,7 +38,12 @@ const Cart = ({ cart }) => {
           Subtotal: {cart.subtotal.formatted_with_symbol}
         </Typography>
         <div className="cart_buttongroup">
-          <Button size="large" type="button" variant="outlined">
+          <Button
+            size="large"
+            type="button"
+            variant="outlined"
+            onClick={handleEmptyCart}
+          >
             Empty Cart
           </Button>
           <Button size="large" type="button" variant="contained">

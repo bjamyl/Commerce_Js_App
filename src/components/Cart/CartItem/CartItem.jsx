@@ -9,7 +9,11 @@ import {
 } from "@mui/material";
 import "./cartitem.css";
 
-const CartItem = ({ item }) => {
+const CartItem = ({
+  item,
+  handleRemoveFromCart,
+  handleUpdateCartQty
+}) => {
   return (
     <Card
       sx={{
@@ -39,15 +43,15 @@ const CartItem = ({ item }) => {
           }}
         >
           <div className="button_group">
-            <Button size="small" variant="outlined">
+            <Button size="small" variant="outlined" onClick={() => handleUpdateCartQty(item.id,item.quantity -1)}>
               -
             </Button>
             <Typography>{item.quantity}</Typography>
-            <Button size="small" variant="outlined">
+            <Button size="small" variant="outlined" onClick={() => handleUpdateCartQty(item.id,item.quantity +1)}>
               +
             </Button>
           </div>
-          <Button type="button" variant="contained">
+          <Button type="button" variant="contained" onClick={()=>handleRemoveFromCart(item.id)}>
             Remove
           </Button>
         </CardActions>
